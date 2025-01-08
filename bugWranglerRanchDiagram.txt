@@ -1,0 +1,69 @@
+title Nicholas's Bug Wrangler Ranch
+
+participant main.js
+participant drovers.js
+participant cattle.js
+participant journey.js
+participant database.js
+participant utils.js
+
+activate main.js
+main.js-->>main.js:define how\nmany cattleToDrive
+main.js->drovers.js:use hireDrovers(herdSize) to create\nan array of drovers
+deactivate main.js
+activate drovers.js
+drovers.js->database.js:import the database to pull drover information
+deactivate drovers.js
+activate database.js
+database.js-->drovers.js:return database
+deactivate database.js
+activate drovers.js
+loop for
+drovers.js->drovers.js:push a random drover\ndrover to the drovers\narray once for every\n10 herdSize
+end
+drovers.js-->main.js:return drovers array
+deactivate drovers.js
+activate main.js
+main.js->cattle.js:use roundup(herdSize) to createan array of cattle
+deactivate main.js
+activate cattle.js
+cattle.js->database.js:import the database to pull cattle information
+deactivate cattle.js
+activate database.js
+database.js-->cattle.js:return database
+deactivate database.js
+activate cattle.js
+loop for
+cattle.js->cattle.js:push a random cattle\nto the cattle array for the\nnumber of herdSize provided
+end
+cattle.js-->main.js:return cattle array
+deactivate cattle.js
+activate main.js
+main.js->journey.js:use journeyMaker() to create journey array
+deactivate main.js
+activate journey.js
+journey.js->utils.js:import randomize function
+deactivate journey.js
+activate utils.js
+utils.js-->>utils.js: define randomize() function\nto randomize an array's order
+utils.js-->journey.js:return randomize function
+deactivate utils.js
+loop for
+activate journey.js
+journey.js->journey.js:use journeyMaker() to create\na random number of rivers,\nforests, mountains, and plains\nand store in journey array
+end
+deactivate journey.js
+activate main.js
+journey.js-->main.js:return journey array
+main.js-->main.js:define animalList\nto hold each cattle\nbreed to print
+main.js-->main.js:print header text
+loop for
+main.js->main.js:add the cattle.breed\ninformation for each\ncattle to animalList
+end
+main.js-->main.js:print animaList
+loop for
+main.js->main.js:print each drover's name\nfrom drover array
+end
+loop for
+main.js->main.js:print each area from\nthe journey array
+end

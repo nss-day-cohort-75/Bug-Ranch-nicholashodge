@@ -7,6 +7,8 @@ const drovers = hireDrovers(cattleToDrive)
 const cattle = roundup(cattleToDrive)
 const journey = journeyMaker()
 
+let animalsList = ""
+
 console.log(`
 ************************************************
 **  K A N S A S   S L I M ' S   C A T T L E   **
@@ -25,8 +27,17 @@ console.log(`
 
 console.log(`You will be accompanying ${drovers.length} drovers as they drive ${cattleToDrive} cattle to Old Red's Ranch for grazing`)
 console.log(`\nThe herd is made of up the following cattle (only their breed is shown):`)
-console.log(`${cattle}\n`)
-
+//add the cattle breeds to a comma separated string that we can print out
+for (let i = 0; i < cattle.length; i++) {
+    animalsList += cattle[i].breed
+    //add comma's after every entry except the last, which will end the list in a newline character
+    if( i < cattle.length - 1){
+        animalsList += ", "
+    }else{
+        animalsList += "\n"
+    }
+}
+console.log(`${animalsList}`)
 console.log("Here is the team of drovers you will be joining")
 for (const drover of drovers) {
     console.log(`\t* ${drover.first_name} ${drover.last_name}`)
